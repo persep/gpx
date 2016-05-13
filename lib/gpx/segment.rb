@@ -59,8 +59,8 @@ module GPX
     def append_point(pt)
       last_pt = @points[-1]
       if pt.time
-        @earliest_point = pt if(@earliest_point.nil? or pt.time < @earliest_point.time)
-        @latest_point   = pt if(@latest_point.nil? or pt.time > @latest_point.time)
+        @earliest_point = pt if(@earliest_point.nil? or @earliest_point.time.nil? or pt.time < @earliest_point.time)
+        @latest_point   = pt if(@latest_point.nil? or @latest_point.time.nil? or pt.time > @latest_point.time)
       else
         # when no time information in data, we consider the points are ordered
         @earliest_point = @points[0]
